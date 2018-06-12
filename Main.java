@@ -15,7 +15,7 @@ lista.addOrden("h", 3);
 
 lista.print();	*/
 	
-Huffman huffman = new Huffman("seas picha"); 	
+Huffman huffman = new Huffman("aqui va el mensaje"); 	
 System.out.println("\n");	
 //System.out.println(huffman.setNewString("mensaje", 3)); 
 	
