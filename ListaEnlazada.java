@@ -1,19 +1,24 @@
 public class ListaEnlazada {
 Nodo head; 
-	
+int size; 	
+
 public ListaEnlazada () {
  head = null; 		
 }	
 
+public int getSize () {
+ return this.size; 	
+}
+
 public void addOrden (Comparable letra, Comparable cantidad) { 
-Nodo nuevo = new Nodo(cantidad); 
+Nodo nuevo = new Nodo(cantidad);  ++size;  
 ArbolBinario arbol = new ArbolBinario (letra, cantidad); 
 nuevo.setArbolBinario(arbol);
 Nodo temporal = head;  
 if (head != null) {
 if (head.getValue().compareTo(cantidad) > 0) {
  nuevo.setNextOne(head); 
- head = nuevo; 	
+ head = nuevo;
 }	
 else {	
  while (temporal.getNextOne() != null && temporal.getNextOne().getValue().compareTo(cantidad) < 0) {
@@ -88,7 +93,54 @@ String representacionTexto = "";
 System.out.println(representacionTexto); 
 }
 
+public void extraerPosition (int position) { // extrae una posicion de la lista. 
+	 Nodo temporal = head; 
+	 if (head != null) {
+	  if (position == 0) {
+		head = head.getNextOne();   
+	  }
+	  else {
+		int contador = 0;   
+	   while (temporal.getNextOne() != null && contador < (position-1)) {
+		 temporal = temporal.getNextOne();   ++contador; 
+	   }
+	   if (temporal.getNextOne() != null) { 
+		if (temporal.getNextOne().getNextOne() != null) {
+		  temporal.setNextOne(temporal.getNextOne().getNextOne());	
+		}
+		else {
+		 temporal.setNextOne(null);	
+		}
+	   }
+	   else {
+		 // de lo contrario, el siguiente es nulo y no encontre la posicion.    
+	   }
+	  }
+		 
+	 }
+	}
 
+public Nodo getNodoPosition (int position) { // extrae una posicion de la lista. 
+	 Nodo temporal = head; Nodo copia = null; 
+	 if (head != null) {
+	  if (position == 0) {
+	   copia = head; 	   
+	  }
+	  else {
+		int contador = 0;   
+	   while (temporal.getNextOne() != null && contador < (position-1)) {
+		 temporal = temporal.getNextOne();   ++contador; 
+	   }
+	   if (temporal.getNextOne() != null) { 
+		copia = temporal.getNextOne(); 
+	   }
+	   else {
+		 // de lo contrario, el siguiente es nulo y no encontre el Nodo.    
+	   }
+	  }	 
+	 }
+	 return copia;  
+	}
 
 
 
@@ -118,33 +170,6 @@ public void extraer (Comparable cantidad) { // funciona para una lista ordenada,
    }
  }
  
-}
-
-public void extraerPosition (int position) { // extrae una posicion de la lista. 
- Nodo temporal = head; 
- if (head != null) {
-  if (position == 0) {
-	head = head.getNextOne();   
-  }
-  else {
-	int contador = 0;   
-   while (temporal.getNextOne() != null && contador < (position-1)) {
-	 temporal = temporal.getNextOne();   ++contador; 
-   }
-   if (temporal.getNextOne() != null) { 
-	if (temporal.getNextOne().getNextOne() != null) {
-	  temporal.setNextOne(temporal.getNextOne().getNextOne());	
-	}
-	else {
-	 temporal.setNextOne(null);	
-	}
-   }
-   else {
-	 // de lo contrario, el siguiente es nulo y no encontre la posicion.    
-   }
-  }
-	 
- }
 }
 
 

@@ -26,6 +26,10 @@ public class ArbolBinario {
  }
  
  }
+ 
+ public NodoArbol getRoot () {
+  return this.root; 	 
+ }
 		 
  
 public void add (NodoArbol nuevo, NodoArbol temporal) { 
